@@ -1,9 +1,6 @@
-# Variables de entorno de docker-compose — nunca subir credenciales reales
-.env
-
-# Node (por si el backend se instala fuera de Docker también)
 node_modules/
-
-# Sistema
-.DS_Store
-Thumbs.db
+.env
+.env.*
+!.env.example
+dist/
+build/

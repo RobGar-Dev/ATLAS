@@ -1,0 +1,251 @@
+/* ==========================================================================
+   root.css
+   Solo tokens de diseño + reset/base global.
+   Orden de carga: root.css → components.css → [página].css
+
+   ÍNDICE
+   1. Tokens (variables)
+   2. Reset y base
+
+   Las variables marcadas con [NUEVO] se agregaron para soportar los
+   componentes mejorados (botones, links, inputs, divisores).
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. TOKENS
+   ========================================================================== */
+
+:root {
+    /* ---- Colores: marca ---- */
+    --color-primary: #092328;
+    --color-primary-light: #0F3A40;
+    /* [NUEVO] hover de botón oscuro */
+    --color-secondary: #12544F;
+    --color-secondary-light: #1A6D65;
+    --color-accent: #2A835F;
+    --color-accent-dark: #226B4D;
+    /* [NUEVO] hover de botón accent */
+    --color-accent-text: #8BBB92;
+
+    /* ---- Colores: superficies ---- */
+    --color-surface: #F4F8F6;
+    --color-surface-alt: #E8F0EC;
+    --color-white: #FFFFFF;
+
+    /* ---- Colores: texto ---- */
+    --color-text: #092328;
+    --color-text-secondary: #52716D;
+    --color-text-muted: #78918D;
+    --color-text-inverse: #F4F8F6;
+    --color-on-accent: #FFFFFF;
+    /* [NUEVO] texto sobre fondo accent */
+    --color-on-accent-muted: rgba(255, 255, 255, 0.78);
+    /* [NUEVO] texto secundario sobre accent */
+
+    /* ---- Colores: bordes ---- */
+    --color-border: #C8D9D2;
+    --color-border-light: #DCE8E3;
+    --color-border-strong: #A3BBB2;
+    /* [NUEVO] borde en hover de inputs */
+    --color-border-on-accent: rgba(255, 255, 255, 0.28);
+    /* [NUEVO] divisores sobre accent */
+
+    /* ---- Colores: estados ---- */
+    --color-success: #2E9B68;
+    --color-warning: #D89B32;
+    --color-danger: #C94B4B;
+    --color-danger-dark: #A83A3A;
+    /* [NUEVO] hover de botón danger */
+    --color-danger-on-accent: #FFE3E3;
+    /* [NUEVO] errores sobre fondo accent */
+    --color-info: #3D8FA3;
+
+    /* ---- Overlays y tintes ---- */
+    --color-overlay: rgba(9, 35, 40, 0.65);
+    --color-accent-soft: rgba(42, 131, 95, 0.12);
+    --color-secondary-soft: rgba(18, 84, 79, 0.08);
+    /* [NUEVO] hover de botón outline */
+    --color-light-soft: rgba(255, 255, 255, 0.14);
+    /* [NUEVO] hover de outline sobre accent */
+    --color-danger-soft: rgba(201, 75, 75, 0.12);
+    /* [NUEVO] */
+
+    /* ---- Tipografía ---- */
+    --font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --font-xs: 0.75rem;
+    /* [NUEVO] 12px */
+    --font-sm: 0.875rem;
+    /* 14px */
+    --font-md: 1rem;
+    /* 16px */
+    --font-xl: 1.25rem;
+    /* 20px */
+    --font-2xl: 1.5rem;
+    /* 24px */
+    --font-3xl: 1.875rem;
+    /* [NUEVO] 30px */
+    --font-display: clamp(2.25rem, 5vw, 3.5rem);
+    /* [NUEVO] títulos hero (36–56px) */
+
+    --font-weight-regular: 400;
+    /* [NUEVO] */
+    --font-weight-medium: 500;
+    /* [NUEVO] */
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.1;
+    /* [NUEVO] */
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+
+    --letter-spacing-tight: -0.02em;
+    /* [NUEVO] */
+
+    /* ---- Espaciado ---- */
+    --spacing-1: 0.25rem;
+    /* 4px */
+    --spacing-2: 0.5rem;
+    /* 8px */
+    --spacing-3: 0.75rem;
+    /* 12px */
+    --spacing-4: 1rem;
+    /* 16px */
+    --spacing-5: 1.25rem;
+    /* 20px */
+    --spacing-6: 1.5rem;
+    /* 24px */
+    --spacing-8: 2rem;
+    /* 32px */
+    --spacing-10: 2.5rem;
+    /* [NUEVO] 40px */
+    --spacing-12: 3rem;
+    /* [NUEVO] 48px */
+
+    /* ---- Bordes y radios ---- */
+    --radius-sm: 6px;
+    /* [NUEVO] */
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-pill: 999px;
+
+    /* ---- Sombras ---- */
+    --shadow-sm: 0 2px 6px rgba(9, 35, 40, 0.08);
+    --shadow-md: 0 6px 16px rgba(9, 35, 40, 0.10);
+    --shadow-lg: 0 12px 28px rgba(9, 35, 40, 0.14);
+    /* [NUEVO] */
+    --shadow-xl: 0 20px 45px rgba(9, 35, 40, 0.18);
+
+    /* ---- Transiciones ---- */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 400ms ease;
+    /* [NUEVO] */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    /* [NUEVO] */
+
+    /* ---- Z-index ---- */
+    --z-base: 1;
+    /* [NUEVO] */
+    --z-dropdown: 1000;
+    /* [NUEVO] */
+    --z-modal: 1300;
+
+    /* ---- Controles (inputs y botones) ---- */
+    --control-height-sm: 36px;
+    /* [NUEVO] */
+    --control-height: 44px;
+    --control-height-lg: 52px;
+    /* [NUEVO] */
+    --control-padding-x: 14px;
+    --icon-size: 20px;
+    /* [NUEVO] icono dentro de inputs */
+    --focus-ring: 0 0 0 3px rgba(42, 131, 95, 0.20);
+    --focus-ring-inverse: 0 0 0 3px rgba(255, 255, 255, 0.45);
+    /* [NUEVO] sobre fondos de color */
+    --focus-ring-danger: 0 0 0 3px rgba(201, 75, 75, 0.20);
+    /* [NUEVO] */
+
+    /* ---- Breakpoints (referencia: var() no funciona dentro de @media) ----
+       sm: 480px | md: 768px | lg: 1024px */
+}
+
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-md);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Los controles de formulario no heredan la fuente por defecto */
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+svg {
+    display: block;
+}
+
+/* Foco visible global (los componentes lo afinan con su propio estilo) */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Bloquea el scroll con un modal abierto (lo activa Modals.js) */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Respeta a quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

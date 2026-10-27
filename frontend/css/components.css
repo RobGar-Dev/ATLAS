@@ -1,0 +1,578 @@
+/* ==========================================================================
+   components.css
+   Piezas reutilizables entre páginas. Solo usa variables de root.css.
+
+   ÍNDICE
+   1. Botones
+   2. Links
+   3. Formularios
+   4. Divisor
+   5. Superficie de color (.surface-accent)
+   6. Modal
+   7. Responsive
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. BOTONES
+   Uso:  <button class="btn btn-primary">Guardar</button>
+   Variantes: .btn-primary | .btn-dark | .btn-accent | .btn-light
+              .btn-outline | .btn-ghost | .btn-danger
+   Tamaños:   .btn-sm | (normal) | .btn-lg
+   Extras:    .btn-block (ancho completo) | <svg class="btn-arrow"> (flecha que se desliza)
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    min-height: var(--control-height);
+    padding: 0 var(--spacing-6);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.btn svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.btn .btn-arrow {
+    transition: transform var(--transition-normal) var(--ease-out);
+}
+
+.btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Hover genérico: se eleva. Active: vuelve a su sitio. */
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---- Tamaños ---- */
+.btn-sm {
+    min-height: var(--control-height-sm);
+    padding: 0 var(--spacing-4);
+    font-size: var(--font-xs);
+}
+
+.btn-lg {
+    min-height: var(--control-height-lg);
+    padding: 0 var(--spacing-8);
+    font-size: var(--font-md);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* ---- Variantes sólidas ---- */
+.btn-primary {
+    color: var(--color-text-inverse);
+    background-color: var(--color-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--color-secondary-light);
+}
+
+.btn-dark {
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-dark:hover:not(:disabled) {
+    background-color: var(--color-primary-light);
+}
+
+.btn-accent {
+    color: var(--color-on-accent);
+    background-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-accent:hover:not(:disabled) {
+    background-color: var(--color-accent-dark);
+}
+
+.btn-light {
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-light:hover:not(:disabled) {
+    background-color: var(--color-surface-alt);
+}
+
+.btn-danger {
+    color: var(--color-white);
+    background-color: var(--color-danger);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-danger:hover:not(:disabled) {
+    background-color: var(--color-danger-dark);
+}
+
+/* ---- Variantes sin relleno ---- */
+.btn-outline {
+    color: var(--btn-outline-color, var(--color-secondary));
+    background-color: transparent;
+    border-color: var(--btn-outline-color, var(--color-secondary));
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: var(--btn-outline-hover-bg, var(--color-secondary-soft));
+    box-shadow: none;
+}
+
+.btn-ghost {
+    color: var(--color-text-secondary);
+    background-color: transparent;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+    box-shadow: none;
+    transform: none;
+}
+
+
+/* ==========================================================================
+   2. LINKS
+   Uso:  <a class="link">…</a>  o  <button type="button" class="link">…</button>
+   Variantes: .link-muted | .link-sm
+   Hover: el subrayado se dibuja de izquierda a derecha.
+   ========================================================================== */
+
+.link {
+    padding-bottom: 2px;
+    color: var(--link-color, var(--color-secondary));
+    font-weight: var(--font-weight-semibold);
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1.5px;
+    transition: background-size var(--transition-normal) var(--ease-out),
+        color var(--transition-fast);
+}
+
+.link:hover {
+    background-size: 100% 1.5px;
+}
+
+.link:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.link-sm {
+    font-size: var(--font-sm);
+}
+
+.link-muted {
+    --link-color: var(--color-text-secondary);
+}
+
+.link-muted:hover {
+    color: var(--color-primary);
+}
+
+
+/* ==========================================================================
+   3. FORMULARIOS
+   Estructura básica:
+     .form-group > label + input (+ .form-hint | .form-error)
+
+   Con icono:
+     .form-group > label + .input-wrap.has-icon > svg.input-icon + input
+
+   Con botón al final (ej. mostrar contraseña):
+     .input-wrap.has-icon.has-action > … + button.input-action
+
+   Estado de error: agregar .is-invalid al .form-group
+   ========================================================================== */
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.form-group label {
+    color: var(--field-label, var(--color-text));
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.form-group input {
+    width: 100%;
+    height: var(--control-height);
+    padding: 0 var(--control-padding-x);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.form-group input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-group input:hover:not(:disabled):not(:focus) {
+    border-color: var(--color-border-strong);
+}
+
+.form-group input:focus {
+    border-color: var(--color-secondary);
+    box-shadow: var(--focus-ring);
+}
+
+.form-group input:disabled {
+    color: var(--color-text-muted);
+    background-color: var(--color-surface-alt);
+    cursor: not-allowed;
+}
+
+/* Autocompletado del navegador: evita el fondo azul/amarillo */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text);
+    box-shadow: 0 0 0 1000px var(--color-white) inset;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.form-group input:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px var(--color-white) inset, var(--focus-ring);
+}
+
+/* ---- Textos de ayuda y error ---- */
+.form-hint,
+.form-error {
+    font-size: var(--font-xs);
+    line-height: var(--line-height-normal);
+}
+
+.form-hint {
+    color: var(--field-hint, var(--color-text-secondary));
+}
+
+.form-error {
+    color: var(--field-error, var(--color-danger));
+    font-weight: var(--font-weight-medium);
+}
+
+/* ---- Estado de error ---- */
+.form-group.is-invalid input,
+.form-group input:user-invalid {
+    border-color: var(--color-danger);
+}
+
+.form-group.is-invalid input:focus,
+.form-group input:user-invalid:focus {
+    box-shadow: var(--focus-ring-danger);
+}
+
+/* ---- Input con icono ---- */
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: var(--spacing-4);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    color: var(--color-text-muted);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.input-wrap:hover .input-icon {
+    color: var(--color-text-secondary);
+}
+
+.input-wrap:focus-within .input-icon {
+    color: var(--color-secondary);
+}
+
+.input-wrap.has-icon input {
+    padding-left: calc(var(--spacing-4) + var(--icon-size) + var(--spacing-3));
+}
+
+.input-wrap.has-action input {
+    padding-right: calc(var(--control-height-sm) + var(--spacing-3));
+}
+
+/* ---- Botón dentro del input (ej. ver/ocultar contraseña) ---- */
+.input-action {
+    position: absolute;
+    right: var(--spacing-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.input-action:hover {
+    color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+}
+
+.input-action:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 0;
+}
+
+.input-action svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+/* Alterna los iconos ojo / ojo tachado (lo activa PasswordToggle.js) */
+.input-action .icon-hide {
+    display: none;
+}
+
+.input-action.is-visible .icon-show {
+    display: none;
+}
+
+.input-action.is-visible .icon-hide {
+    display: block;
+}
+
+
+/* ==========================================================================
+   4. DIVISOR
+   Uso: <div class="divider">o</div>
+   ========================================================================== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    color: var(--divider-color, var(--color-text-muted));
+    font-size: var(--font-xs);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.4;
+}
+
+
+/* ==========================================================================
+   5. SUPERFICIE DE COLOR (.surface-accent)
+   Agrégala a cualquier contenedor con fondo --color-accent y todos los
+   componentes de adentro (labels, links, outline, divisor, foco) se
+   adaptan solos. No hace falta sobrescribir nada en la página.
+   ========================================================================== */
+
+.surface-accent {
+    --field-label: var(--color-on-accent);
+    --field-hint: var(--color-on-accent-muted);
+    --field-error: var(--color-danger-on-accent);
+    --link-color: var(--color-on-accent);
+    --btn-outline-color: var(--color-on-accent);
+    --btn-outline-hover-bg: var(--color-light-soft);
+    --divider-color: var(--color-on-accent-muted);
+    --focus-ring: var(--focus-ring-inverse);
+
+    color: var(--color-on-accent);
+    background-color: var(--color-accent);
+}
+
+.surface-accent .form-group input:focus {
+    border-color: var(--color-white);
+}
+
+.surface-accent .btn:focus-visible,
+.surface-accent .link:focus-visible {
+    outline-color: var(--color-white);
+}
+
+
+/* ==========================================================================
+   6. MODAL
+   Estructura: .modal > .modal-content > (.modal-close, .modal-header, form)
+   Estado abierto: .is-open (lo agrega/quita Modals.js)
+   ========================================================================== */
+
+/* ---- Fondo (overlay) ---- */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-6);
+    background: var(--color-overlay);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal),
+        visibility var(--transition-normal);
+}
+
+.modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ---- Caja de contenido ---- */
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: var(--spacing-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px) scale(0.97);
+    transition: transform var(--transition-normal);
+}
+
+.modal.is-open .modal-content {
+    transform: none;
+}
+
+/* ---- Botón cerrar (×) ---- */
+.modal-close {
+    position: absolute;
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-2xl);
+    line-height: 1;
+    transition: background-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.modal-close:hover {
+    color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+    transform: rotate(90deg);
+}
+
+/* ---- Encabezado: icono, título y descripción ---- */
+.modal-header {
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+}
+
+.modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--spacing-4);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-2xl);
+}
+
+.modal-header h2 {
+    margin-bottom: var(--spacing-3);
+    color: var(--color-primary);
+    font-size: var(--font-2xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.modal-header p {
+    max-width: 380px;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* ==========================================================================
+   7. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    .modal {
+        padding: var(--spacing-4);
+    }
+
+    .modal-content {
+        padding: var(--spacing-6);
+        border-radius: var(--radius-lg);
+    }
+
+    .modal-header h2 {
+        font-size: var(--font-xl);
+    }
+}
