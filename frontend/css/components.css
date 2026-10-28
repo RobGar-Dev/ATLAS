@@ -9,7 +9,8 @@
    4. Divisor
    5. Superficie de color (.surface-accent)
    6. Modal
-   7. Responsive
+   7. Toast (notificaciones)
+   8. Responsive
    ========================================================================== */
 
 
@@ -559,7 +560,101 @@
 
 
 /* ==========================================================================
-   7. RESPONSIVE
+   7. TOAST (NOTIFICACIONES)
+   Contenedor en el HTML:
+     <div class="toast-container" id="toast-container" aria-live="polite"></div>
+   Los toasts los crea Toast.js:
+     .toast + (.toast-success | .toast-error | .toast-warning | .toast-info)
+   ========================================================================== */
+
+.toast-container {
+    position: fixed;
+    right: var(--spacing-6);
+    bottom: var(--spacing-6);
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    width: min(380px, calc(100vw - var(--spacing-6) * 2));
+    pointer-events: none;
+}
+
+.toast {
+    --toast-color: var(--color-info);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary);
+    border-left: 4px solid var(--toast-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    animation: toast-in var(--transition-slow) var(--ease-out);
+    transition: opacity var(--transition-normal),
+        transform var(--transition-normal);
+}
+
+.toast.is-leaving {
+    opacity: 0;
+    transform: translateX(24px);
+}
+
+.toast-success {
+    --toast-color: var(--color-success);
+}
+
+.toast-error {
+    --toast-color: var(--color-danger);
+}
+
+.toast-warning {
+    --toast-color: var(--color-warning);
+}
+
+.toast-info {
+    --toast-color: var(--color-info);
+}
+
+.toast-message {
+    flex: 1;
+    padding-top: 2px;
+    font-size: var(--font-sm);
+    line-height: var(--line-height-normal);
+}
+
+.toast-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--color-on-accent-muted);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-xl);
+    line-height: 1;
+    transition: background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.toast-close:hover {
+    color: var(--color-white);
+    background-color: var(--color-light-soft);
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+}
+
+
+/* ==========================================================================
+   8. RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 480px) {
@@ -574,5 +669,11 @@
 
     .modal-header h2 {
         font-size: var(--font-xl);
+    }
+
+    .toast-container {
+        right: var(--spacing-4);
+        bottom: var(--spacing-4);
+        width: calc(100vw - var(--spacing-4) * 2);
     }
 }

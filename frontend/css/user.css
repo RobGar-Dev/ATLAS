@@ -1,0 +1,395 @@
+/* ==========================================================================
+   usuario.css
+   Estilos exclusivos de la página de usuario.
+   Usa variables de root.css y componentes de components.css (.btn, .toast…).
+
+   ÍNDICE
+   1. Layout general
+   2. Sidebar
+   3. Barra superior (topbar)
+   4. Contenido de la página
+   5. Responsive
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LAYOUT GENERAL
+   ========================================================================== */
+
+.app-content {
+    min-height: 100vh;
+    background-color: var(--color-surface);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-left: var(--sidebar-width);
+}
+
+
+/* ==========================================================================
+   2. SIDEBAR
+   Fijo a la izquierda en escritorio; en móvil se desliza (ver Responsive).
+   ========================================================================== */
+
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: var(--z-sidebar);
+    display: flex;
+    flex-direction: column;
+    width: var(--sidebar-width);
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary);
+    background-image: radial-gradient(circle at 0% 0%, rgba(42, 131, 95, 0.22), transparent 55%);
+}
+
+/* ---- Logo ---- */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    height: var(--topbar-height);
+    padding: 0 var(--spacing-6);
+    border-bottom: 1px solid var(--color-border-on-accent);
+}
+
+.sidebar-header a {
+    color: var(--color-text-inverse);
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.18em;
+    transition: color var(--transition-fast);
+}
+
+.sidebar-header a:hover {
+    color: var(--color-accent-text);
+}
+
+/* ---- Navegación ---- */
+.sidebar-nav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: var(--spacing-4);
+}
+
+.nav-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    padding-bottom: var(--spacing-4);
+    list-style: none;
+    overflow-y: auto;
+}
+
+.nav-link,
+.logout-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    text-align: left;
+    transition: background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.nav-link {
+    color: var(--color-on-accent-muted);
+}
+
+.nav-link:hover {
+    color: var(--color-white);
+    background-color: var(--color-light-soft);
+}
+
+.nav-link.active {
+    color: var(--color-on-accent);
+    background-color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-link:focus-visible,
+.logout-button:focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 2px;
+}
+
+.nav-icon,
+.logout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    font-size: var(--font-xl);
+    transition: transform var(--transition-normal) var(--ease-out);
+}
+
+.nav-link:hover .nav-icon,
+.logout-button:hover .logout-icon {
+    transform: scale(1.12);
+}
+
+/* ---- Cerrar sesión ---- */
+.logout-button {
+    margin-top: var(--spacing-4);
+    color: var(--color-danger-on-accent);
+}
+
+.logout-button:hover:not(:disabled) {
+    background-color: var(--color-danger-soft);
+}
+
+.logout-button:disabled {
+    opacity: 0.55;
+}
+
+/* ---- Fondo oscuro (solo se usa en móvil) ---- */
+.sidebar-overlay {
+    display: none;
+}
+
+
+/* ==========================================================================
+   3. BARRA SUPERIOR (TOPBAR)
+   ========================================================================== */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-base);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    height: var(--topbar-height);
+    padding: 0 var(--spacing-8);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.topbar-title {
+    color: var(--color-primary);
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Botón hamburguesa: solo visible en móvil */
+.menu-toggle {
+    display: none;
+    width: var(--control-height);
+    padding: 0;
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-left: auto;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-secondary);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.user-name {
+    color: var(--color-text);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* ==========================================================================
+   4. CONTENIDO DE LA PÁGINA
+   ========================================================================== */
+
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+    width: 100%;
+    max-width: 1200px;
+    padding: var(--spacing-8);
+}
+
+.page-intro h2 {
+    margin-bottom: var(--spacing-2);
+    color: var(--color-primary);
+    font-size: var(--font-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.page-intro p {
+    color: var(--color-text-secondary);
+}
+
+/* ---- Tarjetas de indicadores ---- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-5);
+}
+
+.stat-card {
+    padding: var(--spacing-6);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal) var(--ease-out),
+        box-shadow var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+.stat-card:hover {
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--spacing-5);
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-md);
+    font-size: var(--font-xl);
+}
+
+.stat-label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.stat-value {
+    margin-top: var(--spacing-1);
+    color: var(--color-primary);
+    font-size: var(--font-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+/* ---- Panel ---- */
+.panel {
+    padding: var(--spacing-8);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.panel-title {
+    margin-bottom: var(--spacing-6);
+    color: var(--color-primary);
+    font-size: var(--font-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.panel-empty {
+    padding: var(--spacing-10) var(--spacing-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-sm);
+    text-align: center;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+
+/* ==========================================================================
+   5. RESPONSIVE
+   En ≤768px el sidebar sale de pantalla y se abre con el botón hamburguesa.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .topbar {
+        padding: 0 var(--spacing-4);
+    }
+
+    .page {
+        gap: var(--spacing-6);
+        padding: var(--spacing-5);
+    }
+
+    .page-intro h2 {
+        font-size: var(--font-2xl);
+    }
+
+    /* Sidebar fuera de pantalla; `visibility` evita que sus links reciban foco cerrado */
+    .sidebar {
+        width: min(var(--sidebar-width), 85vw);
+        box-shadow: var(--shadow-xl);
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform var(--transition-normal) var(--ease-out),
+            visibility var(--transition-normal);
+    }
+
+    .sidebar.is-open {
+        transform: none;
+        visibility: visible;
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: calc(var(--z-sidebar) - 1);
+        display: block;
+        background: var(--color-overlay);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-normal),
+            visibility var(--transition-normal);
+    }
+
+    .sidebar-overlay.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-name {
+        display: none;
+    }
+
+    .panel {
+        padding: var(--spacing-5);
+    }
+}

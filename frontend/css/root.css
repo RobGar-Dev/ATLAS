@@ -152,7 +152,11 @@
     /* [NUEVO] */
     --z-dropdown: 1000;
     /* [NUEVO] */
+    --z-sidebar: 1100;
+    /* [NUEVO] */
     --z-modal: 1300;
+    --z-toast: 1400;
+    /* [NUEVO] por encima de modales */
 
     /* ---- Controles (inputs y botones) ---- */
     --control-height-sm: 36px;
@@ -167,6 +171,12 @@
     --focus-ring-inverse: 0 0 0 3px rgba(255, 255, 255, 0.45);
     /* [NUEVO] sobre fondos de color */
     --focus-ring-danger: 0 0 0 3px rgba(201, 75, 75, 0.20);
+    /* [NUEVO] */
+
+    /* ---- Layout de la app ---- */
+    --sidebar-width: 260px;
+    /* [NUEVO] */
+    --topbar-height: 64px;
     /* [NUEVO] */
 
     /* ---- Breakpoints (referencia: var() no funciona dentro de @media) ----

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/frontend/css/root.css">
     <link rel="stylesheet" href="/frontend/css/components.css">
+    <link rel="stylesheet" href="/frontend/css/user.css">
     <title>Usuario - ATLAS</title>
 </head>
 
@@ -14,50 +15,135 @@
          CONTENEDOR PRINCIPAL
          ============================================================ -->
     <div class="app-content">
+
         <!-- ========================================================
              SIDEBAR
              ======================================================== -->
         <aside class="sidebar" id="sidebar">
-            <!--Logo ATLAS-->
+            <!-- Logo ATLAS -->
             <div class="sidebar-header">
-                <a href="/">ATLAS</a>
+                <a href="/frontend/pages/user.html">ATLAS</a>
             </div>
 
-
-            <!--Navegacion principal-->
-            <nav class="sidebar-nav">
+            <!-- Navegación principal -->
+            <nav class="sidebar-nav" aria-label="Navegación principal">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="#" class="nav-link active">
-                            <span class="nav-icon">⌂</span>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <span class="nav-icon" aria-hidden="true">⌂</span>
                             <span class="nav-text">Inicio</span>
-                        </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span class="nav-icon">🗒️</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">🗒️</span>
                             <span class="nav-text">Orden de preventivos</span>
-                        </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span class="nav-icon">📑</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">📑</span>
                             <span class="nav-text">Orden de correctivos</span>
-                        </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span class="nav-icon">📓</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">📓</span>
                             <span class="nav-text">Bitacoras</span>
-                        </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span class="nav-icon">📝</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">📝</span>
                             <span class="nav-text">Solicitudes de materiales</span>
-                        </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                            <span class="nav-icon">📌</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">📌</span>
                             <span class="nav-text">Recordatorios</span>
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
-                <button class="logout-button" id="logoutButton">
-                    <span class="logout-icon">⎋</span>
+
+                <button type="button" class="logout-button" id="logoutButton">
+                    <span class="logout-icon" aria-hidden="true">⎋</span>
                     <span class="logout-text">Cerrar sesión</span>
+                </button>
             </nav>
         </aside>
+
+        <!-- Fondo oscuro que cubre la página cuando el sidebar se abre en móvil -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ========================================================
+             CONTENIDO PRINCIPAL
+             ======================================================== -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <button type="button" class="btn btn-ghost menu-toggle" data-sidebar-toggle aria-label="Abrir menú"
+                    aria-controls="sidebar" aria-expanded="false">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="6" y2="6" />
+                        <line x1="4" x2="20" y1="12" y2="12" />
+                        <line x1="4" x2="20" y1="18" y2="18" />
+                    </svg>
+                </button>
+
+                <h1 class="topbar-title">Inicio</h1>
+
+                <div class="user-chip">
+                    <span class="user-avatar" aria-hidden="true">U</span>
+                    <span class="user-name" data-user-name>Usuario</span>
+                </div>
+            </header>
+
+            <div class="page">
+                <section class="page-intro">
+                    <h2>Resumen de tu actividad</h2>
+                    <p>Aquí verás tus pendientes y registros más recientes.</p>
+                </section>
+
+                <section class="stats-grid" aria-label="Indicadores">
+                    <article class="stat-card" data-stat="preventivos">
+                        <span class="stat-icon" aria-hidden="true">🗒️</span>
+                        <p class="stat-label">Preventivos</p>
+                        <p class="stat-value">—</p>
+                    </article>
+                    <article class="stat-card" data-stat="correctivos">
+                        <span class="stat-icon" aria-hidden="true">📑</span>
+                        <p class="stat-label">Correctivos</p>
+                        <p class="stat-value">—</p>
+                    </article>
+                    <article class="stat-card" data-stat="solicitudes">
+                        <span class="stat-icon" aria-hidden="true">📝</span>
+                        <p class="stat-label">Solicitudes de materiales</p>
+                        <p class="stat-value">—</p>
+                    </article>
+                    <article class="stat-card" data-stat="recordatorios">
+                        <span class="stat-icon" aria-hidden="true">📌</span>
+                        <p class="stat-label">Recordatorios</p>
+                        <p class="stat-value">—</p>
+                    </article>
+                </section>
+
+                <section class="panel">
+                    <h3 class="panel-title">Actividad reciente</h3>
+                    <p class="panel-empty">Aún no hay actividad para mostrar.</p>
+                </section>
+            </div>
+        </main>
     </div>
+
+    <!-- ============================================================
+         CONTENEDOR DE NOTIFICACIONES
+         ============================================================ -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+    <!-- Lógica: usuario.js es el punto de entrada y carga el resto como módulos -->
+    <script type="module" src="/frontend/js/user.js"></script>
 </body>
 
 </html>
