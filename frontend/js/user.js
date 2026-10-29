@@ -1,14 +1,16 @@
 /* ==========================================================================
-   usuario.js
+   user.js
    Punto de entrada de la página de usuario. No contiene lógica propia:
    solo conecta los módulos con los elementos del HTML.
 
    Módulos:
-   - Sidebar.js  → menú lateral
+   - Sections.js → navegación entre secciones (#preventivos, #bitacoras…)
+   - Sidebar.js  → abrir/cerrar el menú lateral en móvil
    - Toast.js    → notificaciones
    - Session.js  → cerrar sesión
    ========================================================================== */
 
+import { initSections } from './Sections.js';
 import { initSidebar } from './Sidebar.js';
 import { toast } from './Toast.js';
 import { logout } from './Session.js';
@@ -34,5 +36,6 @@ function initLogout() {
 
 
 /* ---- Arranque ---- */
+initSections();
 initSidebar();
 initLogout();

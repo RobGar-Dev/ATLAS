@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/frontend/css/root.css">
     <link rel="stylesheet" href="/frontend/css/components.css">
     <link rel="stylesheet" href="/frontend/css/user.css">
-    <title>Usuario - ATLAS</title>
+    <title>Inicio - ATLAS</title>
 </head>
 
 <body>
@@ -18,48 +18,50 @@
 
         <!-- ========================================================
              SIDEBAR
+             Cada link lleva data-section="nombre" y href="#nombre".
+             "nombre" debe coincidir con el id de la sección: section-nombre
              ======================================================== -->
         <aside class="sidebar" id="sidebar">
             <!-- Logo ATLAS -->
             <div class="sidebar-header">
-                <a href="/frontend/pages/user.html">ATLAS</a>
+                <a href="#inicio">ATLAS</a>
             </div>
 
             <!-- Navegación principal -->
             <nav class="sidebar-nav" aria-label="Navegación principal">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="#inicio" class="nav-link active" data-section="inicio">
                             <span class="nav-icon" aria-hidden="true">⌂</span>
                             <span class="nav-text">Inicio</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#preventivos" class="nav-link" data-section="preventivos">
                             <span class="nav-icon" aria-hidden="true">🗒️</span>
                             <span class="nav-text">Orden de preventivos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#correctivos" class="nav-link" data-section="correctivos">
                             <span class="nav-icon" aria-hidden="true">📑</span>
                             <span class="nav-text">Orden de correctivos</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#bitacoras" class="nav-link" data-section="bitacoras">
                             <span class="nav-icon" aria-hidden="true">📓</span>
-                            <span class="nav-text">Bitacoras</span>
+                            <span class="nav-text">Bitácoras</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#solicitudes" class="nav-link" data-section="solicitudes">
                             <span class="nav-icon" aria-hidden="true">📝</span>
                             <span class="nav-text">Solicitudes de materiales</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="#recordatorios" class="nav-link" data-section="recordatorios">
                             <span class="nav-icon" aria-hidden="true">📌</span>
                             <span class="nav-text">Recordatorios</span>
                         </a>
@@ -100,39 +102,109 @@
                 </div>
             </header>
 
+            <!-- ====================================================
+                 SECCIONES
+                 Solo una tiene .active a la vez (lo controla Sections.js).
+                 Estructura: id="section-NOMBRE" + data-title="Título del topbar"
+                 ==================================================== -->
             <div class="page">
-                <section class="page-intro">
-                    <h2>Resumen de tu actividad</h2>
-                    <p>Aquí verás tus pendientes y registros más recientes.</p>
+
+                <!-- ---- Inicio ---- -->
+                <section class="page-section active" id="section-inicio" data-title="Inicio">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Resumen de tu actividad</h2>
+                        <p>Aquí verás tus pendientes y registros más recientes.</p>
+                    </div>
+
+                    <div class="stats-grid" aria-label="Indicadores">
+                        <a href="#preventivos" class="stat-card" data-stat="preventivos">
+                            <span class="stat-icon" aria-hidden="true">🗒️</span>
+                            <p class="stat-label">Preventivos</p>
+                            <p class="stat-value">—</p>
+                        </a>
+                        <a href="#correctivos" class="stat-card" data-stat="correctivos">
+                            <span class="stat-icon" aria-hidden="true">📑</span>
+                            <p class="stat-label">Correctivos</p>
+                            <p class="stat-value">—</p>
+                        </a>
+                        <a href="#solicitudes" class="stat-card" data-stat="solicitudes">
+                            <span class="stat-icon" aria-hidden="true">📝</span>
+                            <p class="stat-label">Solicitudes de materiales</p>
+                            <p class="stat-value">—</p>
+                        </a>
+                        <a href="#recordatorios" class="stat-card" data-stat="recordatorios">
+                            <span class="stat-icon" aria-hidden="true">📌</span>
+                            <p class="stat-label">Recordatorios</p>
+                            <p class="stat-value">—</p>
+                        </a>
+                    </div>
+
+                    <div class="panel">
+                        <h3 class="panel-title">Actividad reciente</h3>
+                        <p class="panel-empty">Aún no hay actividad para mostrar.</p>
+                    </div>
                 </section>
 
-                <section class="stats-grid" aria-label="Indicadores">
-                    <article class="stat-card" data-stat="preventivos">
-                        <span class="stat-icon" aria-hidden="true">🗒️</span>
-                        <p class="stat-label">Preventivos</p>
-                        <p class="stat-value">—</p>
-                    </article>
-                    <article class="stat-card" data-stat="correctivos">
-                        <span class="stat-icon" aria-hidden="true">📑</span>
-                        <p class="stat-label">Correctivos</p>
-                        <p class="stat-value">—</p>
-                    </article>
-                    <article class="stat-card" data-stat="solicitudes">
-                        <span class="stat-icon" aria-hidden="true">📝</span>
-                        <p class="stat-label">Solicitudes de materiales</p>
-                        <p class="stat-value">—</p>
-                    </article>
-                    <article class="stat-card" data-stat="recordatorios">
-                        <span class="stat-icon" aria-hidden="true">📌</span>
-                        <p class="stat-label">Recordatorios</p>
-                        <p class="stat-value">—</p>
-                    </article>
+                <!-- ---- Orden de preventivos ---- -->
+                <section class="page-section" id="section-preventivos" data-title="Orden de preventivos">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Orden de preventivos</h2>
+                        <p>Consulta y administra las órdenes de mantenimiento preventivo.</p>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Órdenes</h3>
+                        <p class="panel-empty">Aún no hay órdenes de preventivos para mostrar.</p>
+                    </div>
                 </section>
 
-                <section class="panel">
-                    <h3 class="panel-title">Actividad reciente</h3>
-                    <p class="panel-empty">Aún no hay actividad para mostrar.</p>
+                <!-- ---- Orden de correctivos ---- -->
+                <section class="page-section" id="section-correctivos" data-title="Orden de correctivos">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Orden de correctivos</h2>
+                        <p>Consulta y administra las órdenes de mantenimiento correctivo.</p>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Órdenes</h3>
+                        <p class="panel-empty">Aún no hay órdenes de correctivos para mostrar.</p>
+                    </div>
                 </section>
+
+                <!-- ---- Bitácoras ---- -->
+                <section class="page-section" id="section-bitacoras" data-title="Bitácoras">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Bitácoras</h2>
+                        <p>Revisa y crea los registros de tus bitácoras.</p>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Registros</h3>
+                        <p class="panel-empty">Aún no hay bitácoras para mostrar.</p>
+                    </div>
+                </section>
+
+                <!-- ---- Solicitudes de materiales ---- -->
+                <section class="page-section" id="section-solicitudes" data-title="Solicitudes de materiales">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Solicitudes de materiales</h2>
+                        <p>Da seguimiento a tus solicitudes de materiales.</p>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Solicitudes</h3>
+                        <p class="panel-empty">Aún no hay solicitudes para mostrar.</p>
+                    </div>
+                </section>
+
+                <!-- ---- Recordatorios ---- -->
+                <section class="page-section" id="section-recordatorios" data-title="Recordatorios">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Recordatorios</h2>
+                        <p>Tus pendientes y avisos importantes en un solo lugar.</p>
+                    </div>
+                    <div class="panel">
+                        <h3 class="panel-title">Pendientes</h3>
+                        <p class="panel-empty">Aún no tienes recordatorios.</p>
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
@@ -142,7 +214,7 @@
          ============================================================ -->
     <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-    <!-- Lógica: usuario.js es el punto de entrada y carga el resto como módulos -->
+    <!-- Lógica: user.js es el punto de entrada y carga el resto como módulos -->
     <script type="module" src="/frontend/js/user.js"></script>
 </body>
 

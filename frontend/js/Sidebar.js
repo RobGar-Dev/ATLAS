@@ -1,12 +1,14 @@
 /* ==========================================================================
    Sidebar.js
-   Comportamiento del menú lateral:
-   - En móvil (≤768px) se abre con el botón [data-sidebar-toggle] y se cierra
-     con el fondo oscuro, la tecla Escape o al elegir un link.
-   - Marca el link activo (.active + aria-current).
+   Comportamiento del menú lateral en móvil (≤768px):
+   - Se abre con el botón [data-sidebar-toggle].
+   - Se cierra con el fondo oscuro, la tecla Escape o al elegir un link.
+
+   El link activo y el cambio de sección NO se manejan aquí: eso es de
+   Sections.js. Este módulo solo se ocupa de abrir y cerrar el menú.
 
    Requiere en el HTML: #sidebar, #sidebarOverlay y [data-sidebar-toggle].
-   Estilos en usuario.css (sección Sidebar y Responsive).
+   Estilos en user.css (sección Sidebar y Responsive).
    ========================================================================== */
 
 const MOBILE_QUERY = '(max-width: 768px)';
@@ -17,7 +19,6 @@ export function initSidebar() {
     const toggle = document.querySelector('[data-sidebar-toggle]');
     if (!sidebar) return;
 
-    const links = sidebar.querySelectorAll('.nav-link');
     const isMobile = window.matchMedia(MOBILE_QUERY);
 
     /* ---- Abrir / cerrar ---- */
@@ -41,19 +42,6 @@ export function initSidebar() {
         if (restoreFocus) toggle?.focus();
     }
 
-    /* ---- Link activo ---- */
-    function setActive(link) {
-        links.forEach((item) => {
-            const active = item === link;
-            item.classList.toggle('active', active);
-            if (active) {
-                item.setAttribute('aria-current', 'page');
-            } else {
-                item.removeAttribute('aria-current');
-            }
-        });
-    }
-
     /* ---- Eventos ---- */
     toggle?.addEventListener('click', () => (isOpen() ? close() : open()));
     overlay?.addEventListener('click', () => close());
@@ -67,16 +55,10 @@ export function initSidebar() {
         if (!event.matches) close();
     });
 
-    links.forEach((link) => {
-        link.addEventListener('click', (event) => {
-            // Mientras los links sean "#" no navegan; cuando tengan ruta real, se respeta
-            if (link.getAttribute('href') === '#') event.preventDefault();
-            setActive(link);
+    // En móvil, elegir un link cierra el menú (Sections.js muestra la sección)
+    sidebar.querySelectorAll('.nav-link, .sidebar-header a').forEach((link) => {
+        link.addEventListener('click', () => {
             if (isMobile.matches) close();
         });
     });
-
-    // Estado inicial
-    const initial = sidebar.querySelector('.nav-link.active');
-    if (initial) setActive(initial);
 }
