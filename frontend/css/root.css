@@ -71,6 +71,16 @@
     --color-danger-soft: rgba(201, 75, 75, 0.12);
     /* [NUEVO] */
 
+    /* ---- Colores: estado de recordatorios ---- */
+    --color-status-incompleto: #C94B4B;
+    --color-status-proceso: #D89B32;
+    --color-status-completado: #2E9B68;
+    --color-status-externo: #7B8B88;
+    --color-status-incompleto-soft: rgba(201, 75, 75, 0.12);
+    --color-status-proceso-soft: rgba(216, 155, 50, 0.14);
+    --color-status-completado-soft: rgba(46, 155, 104, 0.12);
+    --color-status-externo-soft: rgba(123, 139, 136, 0.14);
+
     /* ---- Tipografía ---- */
     --font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
