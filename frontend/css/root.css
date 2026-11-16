@@ -221,7 +221,7 @@ body {
 
 /* Los controles de formulario no heredan la fuente por defecto */
 input,
-textarea,
+textarea,                                                        
 select {
     font: inherit;
     color: inherit;

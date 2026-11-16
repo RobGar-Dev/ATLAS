@@ -30,40 +30,17 @@
             <!-- Navegación principal -->
             <nav class="sidebar-nav" aria-label="Navegación principal">
                 <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#inicio" class="nav-link active" data-section="inicio">
-                            <span class="nav-icon" aria-hidden="true">⌂</span>
-                            <span class="nav-text">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#preventivos" class="nav-link" data-section="preventivos">
-                            <span class="nav-icon" aria-hidden="true">🗒️</span>
-                            <span class="nav-text">Orden de preventivos</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#correctivos" class="nav-link" data-section="correctivos">
-                            <span class="nav-icon" aria-hidden="true">📑</span>
-                            <span class="nav-text">Orden de correctivos</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#bitacoras" class="nav-link" data-section="bitacoras">
-                            <span class="nav-icon" aria-hidden="true">📓</span>
-                            <span class="nav-text">Bitácoras</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#solicitudes" class="nav-link" data-section="solicitudes">
-                            <span class="nav-icon" aria-hidden="true">📝</span>
-                            <span class="nav-text">Solicitudes de materiales</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="#recordatorios" class="nav-link" data-section="recordatorios">
                             <span class="nav-icon" aria-hidden="true">📌</span>
                             <span class="nav-text">Recordatorios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#alarmas" class="nav-link" data-section="alarmas">
+                            <span class="nav-icon" aria-hidden="true">⏰</span>
+                            <span class="nav-text">Alarmas</span>
                         </a>
                     </li>
                 </ul>
@@ -117,21 +94,8 @@
                     </div>
 
                     <div class="stats-grid" aria-label="Indicadores">
-                        <a href="#preventivos" class="stat-card" data-stat="preventivos">
-                            <span class="stat-icon" aria-hidden="true">🗒️</span>
-                            <p class="stat-label">Preventivos</p>
-                            <p class="stat-value">—</p>
-                        </a>
-                        <a href="#correctivos" class="stat-card" data-stat="correctivos">
-                            <span class="stat-icon" aria-hidden="true">📑</span>
-                            <p class="stat-label">Correctivos</p>
-                            <p class="stat-value">—</p>
-                        </a>
-                        <a href="#solicitudes" class="stat-card" data-stat="solicitudes">
-                            <span class="stat-icon" aria-hidden="true">📝</span>
-                            <p class="stat-label">Solicitudes de materiales</p>
-                            <p class="stat-value">—</p>
-                        </a>
+
+
                         <a href="#recordatorios" class="stat-card" data-stat="recordatorios">
                             <span class="stat-icon" aria-hidden="true">📌</span>
                             <p class="stat-label">Recordatorios</p>
@@ -139,58 +103,7 @@
                         </a>
                     </div>
 
-                    <div class="panel">
-                        <h3 class="panel-title">Actividad reciente</h3>
-                        <p class="panel-empty">Aún no hay actividad para mostrar.</p>
-                    </div>
-                </section>
-
-                <!-- ---- Orden de preventivos ---- -->
-                <section class="page-section" id="section-preventivos" data-title="Orden de preventivos">
-                    <div class="page-intro">
-                        <h2 tabindex="-1">Orden de preventivos</h2>
-                        <p>Consulta y administra las órdenes de mantenimiento preventivo.</p>
-                    </div>
-                    <div class="panel">
-                        <h3 class="panel-title">Órdenes</h3>
-                        <p class="panel-empty">Aún no hay órdenes de preventivos para mostrar.</p>
-                    </div>
-                </section>
-
-                <!-- ---- Orden de correctivos ---- -->
-                <section class="page-section" id="section-correctivos" data-title="Orden de correctivos">
-                    <div class="page-intro">
-                        <h2 tabindex="-1">Orden de correctivos</h2>
-                        <p>Consulta y administra las órdenes de mantenimiento correctivo.</p>
-                    </div>
-                    <div class="panel">
-                        <h3 class="panel-title">Órdenes</h3>
-                        <p class="panel-empty">Aún no hay órdenes de correctivos para mostrar.</p>
-                    </div>
-                </section>
-
-                <!-- ---- Bitácoras ---- -->
-                <section class="page-section" id="section-bitacoras" data-title="Bitácoras">
-                    <div class="page-intro">
-                        <h2 tabindex="-1">Bitácoras</h2>
-                        <p>Revisa y crea los registros de tus bitácoras.</p>
-                    </div>
-                    <div class="panel">
-                        <h3 class="panel-title">Registros</h3>
-                        <p class="panel-empty">Aún no hay bitácoras para mostrar.</p>
-                    </div>
-                </section>
-
-                <!-- ---- Solicitudes de materiales ---- -->
-                <section class="page-section" id="section-solicitudes" data-title="Solicitudes de materiales">
-                    <div class="page-intro">
-                        <h2 tabindex="-1">Solicitudes de materiales</h2>
-                        <p>Da seguimiento a tus solicitudes de materiales.</p>
-                    </div>
-                    <div class="panel">
-                        <h3 class="panel-title">Solicitudes</h3>
-                        <p class="panel-empty">Aún no hay solicitudes para mostrar.</p>
-                    </div>
+                    <div class="board" id="board" aria-label="Recordatorios por estado"></div>
                 </section>
 
                 <!-- ---- Recordatorios ---- -->
@@ -199,12 +112,21 @@
                         <h2 tabindex="-1">Recordatorios</h2>
                         <p>Tus pendientes y avisos importantes en un solo lugar.</p>
                     </div>
-                    <div class="panel">
-                        <h3 class="panel-title">Pendientes</h3>
-                        <p class="panel-empty">Aún no tienes recordatorios.</p>
+                    <div class="toolbar">
+                        <input type="search" id="reminderSearch" class="toolbar-search"
+                            placeholder="Buscar por folio, titulo o descripcion" aria-label="Buscar recordatorios">
+                        <select id="reminderFilter" class="toolbar-select" aria-label="Filtrar por estado">
+                            <option value="todos">Todos</option>
+                            <option value="incompleto">Incompleto</option>
+                            <option value="proceso">En Proceso</option>
+                            <option value="completado">Completado</option>
+                            <option value="externo">Externo</option>
+                        </select>
+                        <button type="button" class="btn btn-ghost" id="openSettings">✉ Ajuste de correo </button>
+                        <button type="button" class="btn btn-accent" id="newReminder">+ Nuevo</button>
                     </div>
+                    <div class="reminder-list" id="reminderList"></div>
                 </section>
-
             </div>
         </main>
     </div>
