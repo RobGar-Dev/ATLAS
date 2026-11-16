@@ -127,9 +127,145 @@
                     </div>
                     <div class="reminder-list" id="reminderList"></div>
                 </section>
+
+                <!-- ---- Alarmas ---- -->
+                <section class="page-section" id="section-alarmas" data-title="Alarmas">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Seguimiento de alarmas</h2>
+                        <p>Registro de alarmas enviadas al correo y las que están por enviarse.</p>
+                    </div>
+
+                    <div class="panel">
+                        <h3 class="panel-title">Por enviar</h3>
+                        <div id="alarmPending"></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h3 class="panel-title">Registro de envíos</h3>
+                            <button type="button" class="btn btn-ghost btn-sm" id="clearAlarms">Limpiar
+                                registro</button>
+                        </div>
+                        <div id="alarmLog"></div>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
+
+    <!-- Detalle (solo lectura) -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="detailTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Cerrar">×</button>
+            <div class="modal-header">
+                <h2 id="detailTitle"></h2>
+                <p id="detailFolio"></p>
+            </div>
+            <dl class="detail-list" id="detailBody"></dl>
+        </div>
+    </div>
+
+    <!-- Crear / editar -->
+    <div class="modal" id="reminderModal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="reminderModalTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Cerrar">×</button>
+            <div class="modal-header">
+                <h2 id="reminderModalTitle">Nuevo recordatorio</h2>
+                <p id="reminderFolio">El folio se genera al guardar.</p>
+            </div>
+            <form class="modal-form" id="reminderForm">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                    <label for="rTitulo">Título</label>
+                    <input id="rTitulo" name="titulo" type="text" required maxlength="120">
+                </div>
+                <div class="form-group">
+                    <label for="rDescripcion">Descripción de la actividad</label>
+                    <textarea id="rDescripcion" name="descripcion" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rInicio">Fecha de inicio</label>
+                    <input id="rInicio" name="fechaInicio" type="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="rTermino">Fecha de término</label>
+                    <input id="rTermino" name="fechaTermino" type="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="rHora">Hora</label>
+                    <input id="rHora" name="hora" type="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="rEstado">Estado</label>
+                    <select id="rEstado" name="estado">
+                        <option value="incompleto">Incompleto</option>
+                        <option value="proceso">En proceso</option>
+                        <option value="completado">Completado</option>
+                        <option value="externo">Externo</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-accent">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmar eliminación -->
+    <div class="modal" id="deleteModal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="deleteTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Cerrar">×</button>
+            <div class="modal-header">
+                <h2 id="deleteTitle">Eliminar recordatorio</h2>
+                <p id="deleteText"></p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-ghost" data-modal-close>Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ajuste rápido de correo -->
+    <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="settingsTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Cerrar">×</button>
+            <div class="modal-header">
+                <h2 id="settingsTitle">Ajuste de correo</h2>
+                <p>Configura a dónde y cuándo se envían las alarmas.</p>
+            </div>
+            <form class="modal-form" id="settingsForm">
+                <div class="form-group">
+                    <label for="sEmail">Correo destino</label>
+                    <input id="sEmail" name="email" type="email" placeholder="usuario@empresa.com">
+                </div>
+                <div class="form-group">
+                    <label for="sAntelacion">Enviar alarma</label>
+                    <select id="sAntelacion" name="antelacionMin">
+                        <option value="0">A la hora de término</option>
+                        <option value="15">15 minutos antes</option>
+                        <option value="60">1 hora antes</option>
+                        <option value="1440">1 día antes</option>
+                    </select>
+                </div>
+                <label class="check-row">
+                    <input type="checkbox" name="activas"> Alarmas activas
+                </label>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-accent">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/frontend/js/Modals.js"></script>
+    <script type="module" src="/frontend/js/user.js"></script>
 
     <!-- ============================================================
          CONTENEDOR DE NOTIFICACIONES
