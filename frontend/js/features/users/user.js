@@ -11,8 +11,8 @@
    ========================================================================== */
 
 import { initSections } from './Sections.js';
-import { initSidebar } from './Sidebar.js';
-import { toast } from './Toast.js';
+import { initSidebar } from '../../Sidebar.js';
+import { toast } from '../../Toast.js';
 import { logout } from './Session.js';
 
 

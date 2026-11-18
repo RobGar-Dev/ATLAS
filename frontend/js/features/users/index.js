@@ -17,7 +17,7 @@
    de forma normal y Toast.js queda disponible para cualquier otro uso.
    ========================================================================== */
 
-import { toast } from './Toast.js';
+import { toast } from '../../components/Toast.js';
 import { consumeFlash } from './Flash.js';
 import { login, register, requestPasswordReset } from './Auth.js';
 
