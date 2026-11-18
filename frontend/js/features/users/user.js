@@ -1,19 +1,23 @@
 /* ==========================================================================
    user.js
-   Punto de entrada de la página de usuario. No contiene lógica propia:
-   solo conecta los módulos con los elementos del HTML.
+   Punto de entrada de la página de usuario. Solo conecta módulos.
 
-   Módulos:
-   - Sections.js → navegación entre secciones (#preventivos, #bitacoras…)
-   - Sidebar.js  → abrir/cerrar el menú lateral en móvil
-   - Toast.js    → notificaciones
-   - Session.js  → cerrar sesión
+   - Sections.js       → navegación entre secciones
+   - Sidebar.js        → menú lateral en móvil
+   - Toast.js          → notificaciones
+   - Session.js        → cerrar sesión
+   - Home.js           → tablero de Inicio
+   - RemindersView.js  → Recordatorios y Alarmas
+   - Reminders.js      → datos y programador de alarmas
    ========================================================================== */
 
-import { initSections } from './Sections.js';
-import { initSidebar } from '../../Sidebar.js';
-import { toast } from '../../Toast.js';
-import { logout } from './Session.js';
+import { initSections } from './../../shared/Sections.js';
+import { initSidebar } from './../../components/Sidebar.js';
+import { toast } from './../../components/Toast.js';
+import { logout } from './../../features/sessions/Session.js';
+import { initHome } from './../../components/Home.js';
+import { initRemindersView } from './../../features/reminder/RemindersView.js';
+import { startAlarmScheduler } from './../../features/reminder/Reminders.js';
 
 
 /* ---- Cerrar sesión ---- */
@@ -22,7 +26,7 @@ function initLogout() {
     if (!button) return;
 
     button.addEventListener('click', async () => {
-        button.disabled = true;   // evita doble clic mientras responde el servidor
+        button.disabled = true;
 
         try {
             await logout();
@@ -39,3 +43,6 @@ function initLogout() {
 initSections();
 initSidebar();
 initLogout();
+initHome();
+initRemindersView();
+startAlarmScheduler();

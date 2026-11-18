@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/frontend/css/root.css">
-    <link rel="stylesheet" href="/frontend/css/components.css">
-    <link rel="stylesheet" href="/frontend/css/user.css">
+    <link rel="stylesheet" href="/frontend/css/base/root.css">
+    <link rel="stylesheet" href="/frontend/css/components/components.css">
+    <link rel="stylesheet" href="/frontend/css/pages/user.css">
     <title>Inicio - ATLAS</title>
 </head>
 
@@ -264,8 +264,7 @@
         </div>
     </div>
 
-    <script src="/frontend/js/Modals.js"></script>
-    <script type="module" src="/frontend/js/user.js"></script>
+    <script src="/frontend/js/shared/modals.js"></script>
 
     <!-- ============================================================
          CONTENEDOR DE NOTIFICACIONES
@@ -273,7 +272,7 @@
     <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
     <!-- Lógica: user.js es el punto de entrada y carga el resto como módulos -->
-    <script type="module" src="/frontend/js/user.js"></script>
+    <script type="module" src="/frontend/js/features/users/user.js"></script>
 </body>
 
 </html>

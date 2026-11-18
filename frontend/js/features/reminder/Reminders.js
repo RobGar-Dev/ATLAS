@@ -22,7 +22,7 @@ export const ESTADOS = {
     externo: { label: 'Externo', plural: 'Externo' }
 };
 
-const DEFAULT_SETTINGS = { EMAIL: '', antelacionMin: 0, activas: false };
+const DEFAULT_SETTINGS = { email: '', antelacionMin: 0, activas: false };
 
 /* ---- Utilidades ---- */
 const read = (key, fallback) => {
@@ -34,15 +34,15 @@ const read = (key, fallback) => {
 };
 
 const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
-const notify = () => document.dispatchEvent(new CustmEvent('reminder:changed'));
+const notify = () => document.dispatchEvent(new CustomEvent('reminders:changed'));
 
 export const esc = (text = '') =>
-    String(text).replace(/[&<>"']/g, (m) =>
+    String(text).replace(/[&<>"']/g, (c) =>
         ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 export const dueDate = (r) => new Date(`${r.fechaTermino}T${r.hora || '23:59'}`);
 
-export const formData = (iso) =>
+export const formatDate = (iso) =>
     new Date(iso).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
 
 export const formatDay = (day) =>
