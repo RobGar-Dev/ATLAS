@@ -18,6 +18,7 @@ import { logout } from './../../features/sessions/Session.js';
 import { initHome } from './../../components/Home.js';
 import { initRemindersView } from './../../features/reminder/RemindersView.js';
 import { startAlarmScheduler } from './../../features/reminder/Reminders.js';
+import { initMachines } from './../../components/MachinesView.js'; 
 
 
 /* ---- Cerrar sesión ---- */
@@ -46,3 +47,4 @@ initLogout();
 initHome();
 initRemindersView();
 startAlarmScheduler();
+initMachines();

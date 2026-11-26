@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="/frontend/css/base/root.css">
     <link rel="stylesheet" href="/frontend/css/components/components.css">
     <link rel="stylesheet" href="/frontend/css/pages/user.css">
+    <link rel="stylesheet" href="/frontend/css/pages/machines.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
     <title>Inicio - ATLAS</title>
 </head>
 
@@ -41,6 +50,12 @@
                         <a href="#alarmas" class="nav-link" data-section="alarmas">
                             <span class="nav-icon" aria-hidden="true">⏰</span>
                             <span class="nav-text">Alarmas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#maquinas" class="nav-link" data-section="maquinas">
+                            <span class="nav-icon" aria-hidden="true">🏭</span>
+                            <span class="nav-text">Máquinas y materiales</span>
                         </a>
                     </li>
                 </ul>
@@ -147,6 +162,40 @@
                                 registro</button>
                         </div>
                         <div id="alarmLog"></div>
+                    </div>
+                </section>
+
+                <!-- ---- Máquinas y materiales ---- -->
+                <section class="page-section" id="section-maquinas" data-title="Máquinas y materiales">
+                    <div class="page-intro">
+                        <h2 tabindex="-1">Máquinas y materiales</h2>
+                        <p>Explora el modelo 3D, sus secciones, componentes, materiales y refacciones.</p>
+                    </div>
+
+                    <div class="toolbar">
+                        <select id="machineSelect" class="toolbar-select" aria-label="Máquina"></select>
+                        <input type="search" id="machineSearch" class="toolbar-search"
+                            placeholder="Buscar sección, componente o nº de parte" aria-label="Buscar en la máquina">
+                        <button type="button" class="btn btn-ghost" id="machResetView">⟲ Restablecer vista</button>
+                    </div>
+
+                    <div class="mach-layout">
+                        <aside class="mach-nav" aria-label="Estructura de la máquina">
+                            <h3 class="panel-title">Estructura</h3>
+                            <div id="machTree"></div>
+                        </aside>
+
+                        <div class="mach-stage">
+                            <div class="mach-viewer" id="machViewerHost" role="application"
+                                aria-label="Visor 3D interactivo"></div>
+                            <div class="mach-loading" id="machLoading" hidden>Cargando…</div>
+                            <p class="mach-notice" id="machNotice" hidden></p>
+                            <div class="mach-chip" id="machChip" hidden></div>
+                            <p class="mach-hint">Arrastra para rotar · rueda o pellizco para acercar · toca para
+                                seleccionar</p>
+                        </div>
+
+                        <aside class="mach-info" id="machInfo" aria-live="polite"></aside>
                     </div>
                 </section>
             </div>
@@ -259,6 +308,44 @@
                 <div class="modal-actions">
                     <button type="button" class="btn btn-ghost" data-modal-close>Cancelar</button>
                     <button type="submit" class="btn btn-accent">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registrar sustitución de componente -->
+    <div class="modal" id="replacementModal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="replacementTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" aria-label="Cerrar">×</button>
+            <div class="modal-header">
+                <h2 id="replacementTitle">Registrar sustitución</h2>
+                <p id="replacementSubtitle"></p>
+            </div>
+            <form class="modal-form" id="replacementForm">
+                <div class="form-group">
+                    <label for="rpRemoved">Pieza retirada</label>
+                    <select id="rpRemoved" name="removedPart" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="rpInstalled">Pieza instalada (de inventario)</label>
+                    <select id="rpInstalled" name="installedPart" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="rpDate">Fecha</label>
+                    <input id="rpDate" name="date" type="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="rpReason">Motivo</label>
+                    <input id="rpReason" name="reason" type="text" required maxlength="160">
+                </div>
+                <div class="form-group">
+                    <label for="rpTech">Técnico</label>
+                    <input id="rpTech" name="technician" type="text" required maxlength="80">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-modal-close>Cancelar</button>
+                    <button type="submit" class="btn btn-accent">Registrar</button>
                 </div>
             </form>
         </div>
